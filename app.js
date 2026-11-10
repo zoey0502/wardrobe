@@ -112,7 +112,7 @@ function viewCloset(){
   f.append(catRow,fRow);
   if(!S.loaded)return h("div",null,f,h("p",{class:"hint",text:"正在讀取衣服…"}));
   if(!S.items.length)return h("div",{class:"empty"},h("h2",{text:"衣櫃還是空的"}),
-    h("ol",null,h("li",null,h("b",{text:"穿上一件衣服，"}),"對鏡子拍一張全身照，其他部分穿素色基本款。"),
+    h("ol",null,h("li",null,h("b",{text:"把衣服平鋪或掛起來，"}),"整件入鏡拍一張，背景越素越好，白天靠窗光線最準。"),
       h("li",null,h("b",{text:"按右下角「新增衣服」，"}),"放上照片、選類別和顏色。"),
       h("li",null,h("b",{text:"標記常穿、偶爾或不穿。"}),"不穿的寫一句原因，之後會出現在「待處理」。")));
   const list=S.items.filter(i=>(S.cat==="全部"||i.cat===S.cat)&&(S.freq==="all"||i.freq===S.freq)).sort(byNew);
