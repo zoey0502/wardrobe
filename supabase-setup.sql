@@ -54,6 +54,11 @@ drop policy if exists "own wishlist" on public.wishlist;
 create policy "own wishlist" on public.wishlist for all
   using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
+-- 只有登入的使用者能透過網站存取這三張表（未登入的人完全碰不到）
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on public.items, public.outfits, public.wishlist to authenticated;
+revoke all on public.items, public.outfits, public.wishlist from anon;
+
 -- 照片：私人儲存空間，每個人只能存取自己資料夾裡的照片
 insert into storage.buckets (id, name, public)
 values ('photos', 'photos', false)
