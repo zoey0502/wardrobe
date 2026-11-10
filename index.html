@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>我的電子衣櫃</title>
+<meta name="theme-color" content="#ECEDEF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15171B" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="衣櫃">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2334456A'/%3E%3Cpath d='M32 18a5 5 0 1 1 5 5c-2 0-5 1-5 4v2L12 42a3 3 0 0 0 2 5h36a3 3 0 0 0 2-5L32 29' fill='none' stroke='%23F4F5F8' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="auth" class="auth" hidden>
+    <h1>我的電子衣櫃</h1>
+    <p id="auth-sub">登入後，手機和電腦看到的是同一個衣櫃。</p>
+    <form id="auth-form">
+      <input type="email" id="auth-email" placeholder="Email" autocomplete="email" required>
+      <input type="password" id="auth-pass" placeholder="密碼（至少 6 個字）" autocomplete="current-password" minlength="6" required>
+      <button class="btn" type="submit" id="auth-submit">登入</button>
+      <div class="msg" id="auth-msg" role="status"></div>
+      <button class="switch" type="button" id="auth-switch">第一次使用？建立帳號</button>
+    </form>
+  </section>
+
+  <section id="app" hidden>
+    <header class="top">
+      <div class="title-row"><h1>我的電子衣櫃</h1><button class="acct" id="logout" type="button">登出</button></div>
+      <div class="summary" id="summary"><span>正在打開衣櫃…</span></div>
+      <div class="ratio" id="ratio" aria-hidden="true"></div>
+    </header>
+    <nav class="tabs" id="tabs">
+      <a href="#closet" data-tab="closet">衣櫃<span class="n" id="n-closet"></span></a>
+      <a href="#outfits" data-tab="outfits">搭配<span class="n" id="n-outfits"></span></a>
+      <a href="#trends" data-tab="trends">推薦</a>
+      <a href="#todo" data-tab="todo">待處理<span class="n" id="n-todo"></span></a>
+      <a href="#wish" data-tab="wish">要買的<span class="n" id="n-wish"></span></a>
+    </nav>
+    <div id="notice"></div>
+    <main id="view"></main>
+  </section>
+
+  <div id="setup" class="empty" style="margin-top:12vh" hidden>
+    <h2>網站還沒連上資料庫</h2>
+    <p class="hint">請在 config.js 填入 Supabase 的 Project URL 和 anon public key。</p>
+  </div>
+</div>
+<button class="fab" id="fab" type="button" hidden>＋ 新增衣服</button>
+<div id="layer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
